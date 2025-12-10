@@ -1,0 +1,92 @@
+description: 'Getting started'
+
+prompts:
+  - file://Prompt AI.txt
+  
+env:
+ GEMINI_API_KEY: ---
+
+providers:
+  - "google:gemini-2.5-pro"
+
+tests:
+  - vars:
+      input: variables y asignación
+    assert:
+      - type: icontains
+        value: 'memoria'
+      - type: icontains
+        value: 'etiqueta'
+      - type: javascript
+        value: output.length > 200
+  
+  - vars:
+      input: tipos de datos numéricos (int, float)
+    assert:
+      - type: icontains
+        value: 'precisión'
+      - type: icontains
+        value: 'entero'
+      - type: javascript
+        value: output.includes('float') || output.includes('decimal')
+  
+  - vars:
+      input: strings y manipulación de texto
+    assert:
+      - type: icontains
+        value: 'texto'
+      - type: icontains
+        value: 'cadena'
+      - type: javascript
+        value: output.length > 150
+  
+  - vars:
+      input: funciones y modularización
+    assert:
+      - type: icontains
+        value: 'función'
+      - type: icontains
+        value: 'reutilizable'
+      - type: javascript
+        value: output.includes('def ') || output.includes('return')
+  
+  
+  - vars:
+      input: condicionales if/else
+    assert:
+      - type: icontains
+        value: 'condición'
+      - type: icontains
+        value: 'if'
+      - type: javascript
+        value: output.length > 200
+  
+  - vars:
+      input: bucles for y while
+    assert:
+      - type: icontains
+        value: 'iteración'
+      - type: icontains
+        value: 'ciclo'
+      - type: javascript
+        value: output.includes('for') || output.includes('while')
+  
+  - vars:
+      input: listas y arrays
+    assert:
+      - type: icontains
+        value: 'lista'
+      - type: icontains
+        value: 'índice'
+      - type: javascript
+        value: output.includes('[') && output.includes(']')
+  
+  - vars:
+      input: diccionarios y estructuras clave-valor
+    assert:
+      - type: icontains
+        value: 'clave'
+      - type: icontains
+        value: 'valor'
+      - type: javascript
+        value: output.includes('{') || output.includes('dict')
